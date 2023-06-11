@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.PnlTitle = new System.Windows.Forms.Panel();
-            this.BtnExit = new System.Windows.Forms.Button();
             this.LblTitle = new System.Windows.Forms.Label();
+            this.BtnExit = new System.Windows.Forms.Button();
             this.LblContent = new System.Windows.Forms.Label();
             this.TxbPassword = new System.Windows.Forms.TextBox();
             this.TxbConfirm = new System.Windows.Forms.TextBox();
@@ -38,6 +38,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.PboxMain = new System.Windows.Forms.PictureBox();
+            this.CboxVisible = new System.Windows.Forms.CheckBox();
             this.PnlTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PboxMain)).BeginInit();
             this.SuspendLayout();
@@ -53,17 +54,6 @@
             this.PnlTitle.Size = new System.Drawing.Size(381, 23);
             this.PnlTitle.TabIndex = 0;
             // 
-            // BtnExit
-            // 
-            this.BtnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnExit.ForeColor = System.Drawing.Color.White;
-            this.BtnExit.Location = new System.Drawing.Point(357, 1);
-            this.BtnExit.Name = "BtnExit";
-            this.BtnExit.Size = new System.Drawing.Size(20, 20);
-            this.BtnExit.TabIndex = 1;
-            this.BtnExit.Text = "X";
-            this.BtnExit.UseVisualStyleBackColor = true;
-            // 
             // LblTitle
             // 
             this.LblTitle.AutoSize = true;
@@ -74,6 +64,18 @@
             this.LblTitle.Size = new System.Drawing.Size(88, 16);
             this.LblTitle.TabIndex = 2;
             this.LblTitle.Text = "Authentication";
+            // 
+            // BtnExit
+            // 
+            this.BtnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExit.ForeColor = System.Drawing.Color.White;
+            this.BtnExit.Location = new System.Drawing.Point(357, 1);
+            this.BtnExit.Name = "BtnExit";
+            this.BtnExit.Size = new System.Drawing.Size(20, 20);
+            this.BtnExit.TabIndex = 1;
+            this.BtnExit.Text = "X";
+            this.BtnExit.UseVisualStyleBackColor = true;
+            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // LblContent
             // 
@@ -90,6 +92,7 @@
             // 
             this.TxbPassword.Location = new System.Drawing.Point(114, 66);
             this.TxbPassword.Name = "TxbPassword";
+            this.TxbPassword.PasswordChar = '●';
             this.TxbPassword.Size = new System.Drawing.Size(236, 19);
             this.TxbPassword.TabIndex = 4;
             // 
@@ -97,6 +100,7 @@
             // 
             this.TxbConfirm.Location = new System.Drawing.Point(114, 114);
             this.TxbConfirm.Name = "TxbConfirm";
+            this.TxbConfirm.PasswordChar = '●';
             this.TxbConfirm.Size = new System.Drawing.Size(236, 19);
             this.TxbConfirm.TabIndex = 6;
             // 
@@ -114,6 +118,7 @@
             // btnOK
             // 
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btnOK.ForeColor = System.Drawing.Color.Black;
             this.btnOK.Location = new System.Drawing.Point(248, 146);
             this.btnOK.Name = "btnOK";
@@ -121,10 +126,12 @@
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // BtnCancel
             // 
             this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCancel.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BtnCancel.ForeColor = System.Drawing.Color.Black;
             this.BtnCancel.Location = new System.Drawing.Point(318, 146);
             this.BtnCancel.Name = "BtnCancel";
@@ -132,6 +139,7 @@
             this.BtnCancel.TabIndex = 7;
             this.BtnCancel.Text = "Cancel";
             this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // PboxMain
             // 
@@ -141,11 +149,23 @@
             this.PboxMain.TabIndex = 8;
             this.PboxMain.TabStop = false;
             // 
+            // CboxVisible
+            // 
+            this.CboxVisible.AutoSize = true;
+            this.CboxVisible.Location = new System.Drawing.Point(114, 146);
+            this.CboxVisible.Name = "CboxVisible";
+            this.CboxVisible.Size = new System.Drawing.Size(109, 16);
+            this.CboxVisible.TabIndex = 9;
+            this.CboxVisible.Text = "visible password";
+            this.CboxVisible.UseVisualStyleBackColor = true;
+            this.CboxVisible.CheckedChanged += new System.EventHandler(this.CboxVisible_CheckedChanged);
+            // 
             // PassWordForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(381, 178);
+            this.Controls.Add(this.CboxVisible);
             this.Controls.Add(this.PboxMain);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.btnOK);
@@ -158,6 +178,7 @@
             this.Name = "PassWordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PassWordForm";
+            this.Load += new System.EventHandler(this.PassWordForm_Load);
             this.PnlTitle.ResumeLayout(false);
             this.PnlTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PboxMain)).EndInit();
@@ -178,5 +199,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.PictureBox PboxMain;
+        private System.Windows.Forms.CheckBox CboxVisible;
     }
 }
