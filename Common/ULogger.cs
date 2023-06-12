@@ -168,7 +168,7 @@ namespace Utils.Common
             FileStream outStream = new FileStream(oldFilePath + ".gz", FileMode.Create, FileAccess.Write);
             GZipStream gzStream = new GZipStream(outStream, CompressionMode.Compress);
 
-            int size = 0;
+            int size;
             byte[] buffer = new byte[Settings.Default.LOGFILE_MAXSIZE + 1000];
             while (0 < (size = inStream.Read(buffer, 0, buffer.Length)))
             {

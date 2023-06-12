@@ -35,7 +35,7 @@
             this.TxbPassword = new System.Windows.Forms.TextBox();
             this.TxbConfirm = new System.Windows.Forms.TextBox();
             this.LblConfirm = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.BtnOK = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.PboxMain = new System.Windows.Forms.PictureBox();
             this.CboxVisible = new System.Windows.Forms.CheckBox();
@@ -53,6 +53,7 @@
             this.PnlTitle.Name = "PnlTitle";
             this.PnlTitle.Size = new System.Drawing.Size(381, 23);
             this.PnlTitle.TabIndex = 0;
+            this.PnlTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitle_MouseDown);
             // 
             // LblTitle
             // 
@@ -115,18 +116,18 @@
             this.LblConfirm.TabIndex = 5;
             this.LblConfirm.Text = "please confirm your password :";
             // 
-            // btnOK
+            // BtnOK
             // 
-            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOK.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnOK.ForeColor = System.Drawing.Color.Black;
-            this.btnOK.Location = new System.Drawing.Point(248, 146);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(51, 20);
-            this.btnOK.TabIndex = 3;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.BtnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnOK.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BtnOK.ForeColor = System.Drawing.Color.Black;
+            this.BtnOK.Location = new System.Drawing.Point(248, 146);
+            this.BtnOK.Name = "BtnOK";
+            this.BtnOK.Size = new System.Drawing.Size(51, 20);
+            this.BtnOK.TabIndex = 3;
+            this.BtnOK.Text = "OK";
+            this.BtnOK.UseVisualStyleBackColor = true;
+            this.BtnOK.Click += new System.EventHandler(this.BtnOK_Click);
             // 
             // BtnCancel
             // 
@@ -143,9 +144,10 @@
             // 
             // PboxMain
             // 
-            this.PboxMain.Location = new System.Drawing.Point(6, 47);
+            this.PboxMain.Location = new System.Drawing.Point(30, 66);
             this.PboxMain.Name = "PboxMain";
-            this.PboxMain.Size = new System.Drawing.Size(92, 86);
+            this.PboxMain.Size = new System.Drawing.Size(45, 45);
+            this.PboxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PboxMain.TabIndex = 8;
             this.PboxMain.TabStop = false;
             // 
@@ -168,7 +170,7 @@
             this.Controls.Add(this.CboxVisible);
             this.Controls.Add(this.PboxMain);
             this.Controls.Add(this.BtnCancel);
-            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.BtnOK);
             this.Controls.Add(this.TxbConfirm);
             this.Controls.Add(this.LblConfirm);
             this.Controls.Add(this.TxbPassword);
@@ -178,7 +180,6 @@
             this.Name = "PassWordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PassWordForm";
-            this.Load += new System.EventHandler(this.PassWordForm_Load);
             this.PnlTitle.ResumeLayout(false);
             this.PnlTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PboxMain)).EndInit();
@@ -196,7 +197,7 @@
         private System.Windows.Forms.TextBox TxbPassword;
         private System.Windows.Forms.TextBox TxbConfirm;
         private System.Windows.Forms.Label LblConfirm;
-        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button BtnOK;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.PictureBox PboxMain;
         private System.Windows.Forms.CheckBox CboxVisible;

@@ -10,6 +10,11 @@ namespace Utils.Common
     {
         internal static string Password { get; set; } = string.Empty;
 
+        /// <summary>
+        /// パスワード入力フォームを起動し、入力したパスワードを取得する
+        /// 何かエラーがあった場合　error を文字列として返す
+        /// </summary>
+        /// <returns>入力したパスワード</returns>
         public static string GetPassword()
         {
             Views.PassWordForm passWordForm = new Views.PassWordForm();

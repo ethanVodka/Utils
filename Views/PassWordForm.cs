@@ -4,17 +4,27 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace Utils.Views
 {
     internal partial class PassWordForm : Form
     {
+        //C++ネイティブコードのインポート
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         public PassWordForm()
         {
             InitializeComponent();
+
+            PboxMain.Image = SystemIcons.Shield.ToBitmap();
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -22,7 +32,7 @@ namespace Utils.Views
             this.Close();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void BtnOK_Click(object sender, EventArgs e)
         {
             if (TxbConfirm.Text == TxbPassword.Text)
             {
@@ -56,9 +66,10 @@ namespace Utils.Views
             }
         }
 
-        private void PassWordForm_Load(object sender, EventArgs e)
+        private void PnlTitle_MouseDown(object sender, MouseEventArgs e)
         {
-            PboxMain.Image = Properties.Resources.Icon_key;
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }
