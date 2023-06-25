@@ -104,5 +104,41 @@ namespace Utils.Common
                 AddPolyNodeToList(polyNode.Childs[i], polygons);
             }
         }
+
+        public static List<List<GPoint>> RemoveHoles(List<List<GPoint>> polygons, double thresholdArea)
+        {
+            // Convert GPoints to IntPoints
+            List<List<IntPoint>> intPolygons = polygons.Select(polygon =>
+                polygon.Select(p => new IntPoint((long)p.X, (long)p.Y)).ToList()).ToList();
+
+            // Create a new Clipper instance
+            Clipper clipper = new Clipper();
+
+            // Add the polygons as subject paths
+            foreach (List<IntPoint> polygon in intPolygons)
+            {
+                clipper.AddPath(polygon, PolyType.ptSubject, true);
+            }
+
+            // Execute the union operation
+            List<List<IntPoint>> solution = new List<List<IntPoint>>();
+            clipper.Execute(ClipType.ctUnion, solution);
+
+            // Find the outer polygons and remove the holes
+            List<List<IntPoint>> result = new List<List<IntPoint>>();
+            foreach (List<IntPoint> polygon in solution)
+            {
+                if (Clipper.Area(polygon) >= thresholdArea)
+                {
+                    result.Add(polygon);
+                }
+            }
+
+            // Convert the solution to a list of GPoints
+            List<List<GPoint>> resultPolygons = result.Select(polygon =>
+                polygon.Select(p => new GPoint(p.X, p.Y)).ToList()).ToList();
+
+            return resultPolygons;
+        }
     }
 }
